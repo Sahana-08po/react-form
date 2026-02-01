@@ -1,37 +1,46 @@
 import { supabase } from "./supabase";
 import { useState } from "react";
+import Home from "./Home";
 import "./App.css";
 
 export default function App() {
+  const [page, setPage] = useState("home");
+
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const { error } = await supabase.from("users").insert([
-    {
-      first_name,
-      last_name,
-      email,
-      phone,
-    },
-  ]);
+    const { error } = await supabase.from("users").insert([
+      {
+        first_name,
+        last_name,
+        email,
+        phone,
+      },
+    ]);
 
-  if (error) {
-    console.error(error);
-    alert("Error: " + error.message);
-  } else {
-    alert("Submitted successfully!");
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPhone("");
+    if (error) {
+      console.error(error);
+      alert("Error: " + error.message);
+    } else {
+      alert("Submitted successfully!");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhone("");
+    }
+  };
+
+  // 👇 SHOW HOME FIRST
+  if (page === "home") {
+    return <Home goToForm={() => setPage("form")} />;
   }
-};
 
+  // 👇 FORM PAGE
   return (
     <div className="page">
       <div className="retro-left" />
@@ -76,3 +85,4 @@ export default function App() {
     </div>
   );
 }
+
