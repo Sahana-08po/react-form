@@ -1,0 +1,205 @@
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f2f2f2;
+}
+
+/* ===== PAGE ===== */
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== RETRO BACKGROUND ELEMENTS ===== */
+
+/* Halftone dots (left) */
+.retro-left {
+  position: absolute;
+  left: 80px;
+  top: 50%;
+  width: 220px;
+  height: 220px;
+  transform: translateY(-50%);
+  background:
+    radial-gradient(circle, #999 22%, transparent 24%) 0 0 / 14px 14px;
+  opacity: 0.4;
+}
+
+/* Concentric circles + bars (right) */
+.retro-right {
+  position: absolute;
+  right: 120px;
+  top: 50%;
+  width: 260px;
+  height: 260px;
+  transform: translateY(-50%);
+}
+
+.retro-right::before,
+.retro-right::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.retro-right::before {
+  width: 200px;
+  height: 200px;
+  border: 12px solid #cfcfcf;
+  inset: 0;
+  margin: auto;
+}
+
+.retro-right::after {
+  width: 120px;
+  height: 120px;
+  border: 8px solid #bdbdbd;
+  inset: 0;
+  margin: auto;
+}
+
+/* ===== WINDOW CARD ===== */
+.window {
+  width: 420px;
+  padding: 28px 28px 36px;
+  border-radius: 26px;
+  background: linear-gradient(#ffffff, #f4f4f4);
+  box-shadow:
+    inset 0 2px 0 #ffffff,
+    inset 0 -2px 4px rgba(0,0,0,0.08),
+    0 30px 60px rgba(0,0,0,0.18);
+  position: relative;
+}
+
+/* ===== WINDOW HEADER ===== */
+.window-bar {
+  height: 38px;
+  border-radius: 16px 16px 10px 10px;
+  background: linear-gradient(#dcdcdc, #bfbfbf);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -1px 2px rgba(0,0,0,0.25);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 0 14px;
+  margin-bottom: 18px;
+}
+
+.window-bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #8e8e8e;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.6);
+}
+
+/* ===== TITLE ===== */
+h1 {
+  text-align: center;
+  margin: 12px 0 24px;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* ===== FORM ===== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ===== INPUTS ===== */
+input {
+  height: 56px;
+  border-radius: 999px;
+  border: none;
+  padding: 0 22px;
+  font-size: 16px;
+  background: linear-gradient(#f8f8f8, #e9e9e9);
+  box-shadow:
+    inset 0 4px 6px rgba(0,0,0,0.15),
+    inset 0 -2px 2px rgba(255,255,255,0.9),
+    0 2px 0 rgba(255,255,255,0.8);
+  outline: none;
+}
+
+input::placeholder {
+  color: #666;
+}
+
+/* ===== SUBMIT BUTTON ===== */
+button {
+  margin-top: 12px;
+  height: 64px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(#3a3a3a, #1f1f1f);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 2px 2px rgba(255,255,255,0.25),
+    inset 0 -3px 6px rgba(0,0,0,0.8),
+    0 14px 0 #111,
+    0 18px 30px rgba(0,0,0,0.4);
+}
+
+/* Chrome border */
+button::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.6),
+    inset 0 -2px 3px rgba(0,0,0,0.7);
+}
+
+/* Shine animation */
+button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.4) 50%,
+    transparent 70%
+  );
+  transition: left 0.6s ease;
+}
+
+button:hover::after {
+  left: 120%;
+}
+
+/* Pressed state */
+button:active {
+  transform: translateY(6px);
+  box-shadow:
+    inset 0 2px 2px rgba(255,255,255,0.2),
+    inset 0 -2px 4px rgba(0,0,0,0.9),
+    0 6px 0 #111,
+    0 10px 18px rgba(0,0,0,0.5);
+}
+
+button span {
+  position: relative;
+  z-index: 1;
+}
