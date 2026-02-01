@@ -1,3 +1,4 @@
+import { supabase } from "./supabase";
 import { useState } from "react";
 import "./App.css";
 
@@ -7,10 +8,29 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Submitted");
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const { error } = await supabase.from("users").insert([
+    {
+      first_name,
+      last_name,
+      email,
+      phone,
+    },
+  ]);
+
+  if (error) {
+    console.error(error);
+    alert("Error: " + error.message);
+  } else {
+    alert("Submitted successfully!");
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhone("");
+  }
+};
 
   return (
     <div className="page">
